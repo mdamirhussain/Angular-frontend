@@ -1,0 +1,117 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Registration Form</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+
+    <!-- FIRST NAME -->
+    <div class="form-group mb-2">
+      <label>First Name</label>
+      <input class="form-control" formControlName="firstName">
+      <small class="text-danger" *ngIf="f['firstName'].touched && f['firstName'].invalid">
+        * Minimum 3 characters required
+      </small>
+    </div>
+
+    <!-- LAST NAME -->
+    <div class="form-group mb-2">
+      <label>Last Name</label>
+      <input class="form-control" formControlName="lastName">
+      <small class="text-danger" *ngIf="f['lastName'].touched && f['lastName'].invalid">
+        * Minimum 3 characters required
+      </small>
+    </div>
+
+    <!-- EMAIL -->
+    <div class="form-group mb-2">
+      <label>Email</label>
+      <input class="form-control" formControlName="email">
+      <small class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+        * Enter valid email
+      </small>
+    </div>
+
+    <!-- MOBILE -->
+    <div class="form-group mb-2">
+      <label>Mobile</label>
+      <input class="form-control" formControlName="mobile">
+      <small class="text-danger" *ngIf="f['mobile'].touched && f['mobile'].invalid">
+        * Enter 10 digit mobile number
+      </small>
+    </div>
+
+    <!-- GENDER -->
+    <div class="mb-2">
+      <label>Gender:</label><br>
+      <label><input type="radio" value="Male" formControlName="gender"> Male</label>
+      <label><input type="radio" value="Female" formControlName="gender" class="ms-3"> Female</label>
+
+      <small class="text-danger d-block" *ngIf="f['gender'].touched && f['gender'].invalid">
+        * Please select gender
+      </small>
+    </div>
+
+    <!-- DATE OF BIRTH -->
+    <div class="form-group mb-2">
+      <label>Date of Birth</label>
+      <input type="date" class="form-control" formControlName="dob">
+      <small class="text-danger" *ngIf="f['dob'].touched && f['dob'].invalid">
+        * Please select date
+      </small>
+    </div>
+
+    <!-- COUNTRY DROPDOWN -->
+    <div class="form-group mb-2">
+      <label>Country</label>
+      <select class="form-control" formControlName="country">
+        <option value="">-- Select Country --</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+      </select>
+      <small class="text-danger" *ngIf="f['country'].touched && f['country'].invalid">
+        * Please select country
+      </small>
+    </div>
+
+    <!-- ADDRESS -->
+    <div class="form-group mb-2">
+      <label>Address</label>
+      <textarea class="form-control" formControlName="address"></textarea>
+      <small class="text-danger" *ngIf="f['address'].touched && f['address'].invalid">
+        * Address too short
+      </small>
+    </div>
+
+    <!-- PASSWORD -->
+    <div class="form-group mb-2">
+      <label>Password</label>
+      <input type="password" class="form-control" formControlName="password">
+      <small class="text-danger" *ngIf="f['password'].touched && f['password'].invalid">
+        * Minimum 6 characters required
+      </small>
+    </div>
+
+    <!-- CONFIRM PASSWORD -->
+    <div class="form-group mb-2">
+      <label>Confirm Password</label>
+      <input type="password" class="form-control" formControlName="confirmPassword">
+      <small class="text-danger" *ngIf="registrationForm.errors?.['passwordMismatch']">
+        * Passwords do not match
+      </small>
+    </div>
+
+    <!-- TERMS -->
+    <div class="form-group mb-3">
+      <label>
+        <input type="checkbox" formControlName="terms"> I agree to terms & conditions
+      </label>
+      <small class="text-danger d-block" *ngIf="f['terms'].touched && f['terms'].invalid">
+        * You must agree before submitting
+      </small>
+    </div>
+
+    <!-- SUBMIT BUTTON -->
+    <button class="btn btn-primary" [disabled]="registrationForm.invalid">Register</button>
+
+  </form>
+</div>

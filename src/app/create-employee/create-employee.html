@@ -1,0 +1,93 @@
+<!-- <div class="col-md-8 offset-md-3"></div>
+<h3>Create Employee</h3>
+<form (ngSubmit)="onSubmit()">
+ <div class="form-group">
+  <label> First Name</label>
+  <input type="text" class="form-control" id="firstName" [(ngModel)]="employee.firstName" name="firstName">
+ </div>
+ <div class="form-group">
+  <label> Last Name</label>
+  <input type="text" class="form-control" id="lastName" [(ngModel)]="employee.lasttName" name="lastName">
+ </div>
+ <div class="form-group">
+  <label> Email Id</label>
+  <input type="text" class="form-control" id="emailId" [(ngModel)]="employee.emailId" name="emailId">
+ </div>
+ <button class="btn btn-success" type="submit">Submit</button>
+</form>
+
+
+Without Validation above
+With validation below
+-->
+
+<div class="col-md-8 offset-md-3"></div>
+<h3>Create Employee </h3><h4>Template-driven Forms</h4>
+
+<form (ngSubmit)="onSubmit()" #empForm="ngForm">
+
+  <!-- FIRST NAME -->
+  <div class="form-group">
+    <label> First Name</label>
+    <input type="text"
+           class="form-control"
+           id="firstName"
+           required
+           minlength="3"
+           [(ngModel)]="employee.firstName"
+           name="firstName"
+           #firstName="ngModel">
+
+    <!-- Error Messages -->
+    <div class="text-danger" *ngIf="firstName.invalid && firstName.touched">
+      <small *ngIf="firstName.errors?.['required']">First Name is required</small>
+      <small *ngIf="firstName.errors?.['minlength']">Minimum 3 characters required</small>
+    </div>
+  </div>
+
+  <!-- LAST NAME -->
+  <div class="form-group">
+    <label> Last Name</label>
+    <input type="text"
+           class="form-control"
+           id="lastName"
+           required
+           minlength="3"
+           [(ngModel)]="employee.lasttName"
+           name="lastName"
+           #lastName="ngModel">
+
+    <div class="text-danger" *ngIf="lastName.invalid && lastName.touched">
+      <small *ngIf="lastName.errors?.['required']">Last Name is required</small>
+      <small *ngIf="lastName.errors?.['minlength']">Minimum 3 characters required</small>
+    </div>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="form-group">
+    <label>Email ID</label>
+    <input type="email"
+           class="form-control"
+           id="emailId"
+           required
+           email
+           [(ngModel)]="employee.emailId"
+           name="emailId"
+           #emailId="ngModel">
+
+    <div class="text-danger" *ngIf="emailId.invalid && emailId.touched">
+      <small *ngIf="emailId.errors?.['required']">Email is required</small>
+      <small *ngIf="emailId.errors?.['email']">Invalid Email format</small>
+    </div>
+  </div>
+
+  <!-- BUTTON -->
+  <button class="btn btn-success"
+          type="submit"
+          [disabled]="empForm.invalid">
+    Submit
+  </button>
+
+</form>
+
+
